@@ -19,10 +19,12 @@ function TravelList() {
         desc={item.desc}
         delete={() => deleteItem(index)}
       />
+
     ));
 
   const clearItems = () => setList([]); // vacía la lista -> list = []
   const resetItems = () => setList(data); // resetea la lista -> list = data
+  const clearSearch = () => setValues({ task: "", desc: "" });
 
   const deleteItem = (pos) => {
     const remainingItems = list.filter((item, index) => index !== pos);
@@ -40,6 +42,11 @@ function TravelList() {
     console.log("*******");
     console.log(item);
     console.log(list);
+
+    e.target.task.value = "";
+    e.target.desc.value = "";
+   clearSearch();
+    
   }
 
   const handleChange = (e) => {
@@ -58,7 +65,6 @@ function TravelList() {
         <button onClick={resetItems}>Refresh</button>
       </div>
 
-
       <form onSubmit={handleSubmit} className="formTask">
         <label htmlFor="name">Task Name</label>
         <input type="text" name="task" onChange={handleChange} />
@@ -70,15 +76,12 @@ function TravelList() {
           <button type="submit">ADD</button> : null}
       </form>
 
-
-
-
       {values.task || values.desc ?
-        <div className="formCard">
+        <div className="formCard1">
           <h3>{values.task}</h3>
           <p>Due date: {values.desc}</p>
           <br/>
-      <button className="formButton" onClick={()=>props.delete()}>Delete</button>
+      <button className="formButton">Delete</button>
         </div> : null}
 
         <h2>To-Do List:</h2>
