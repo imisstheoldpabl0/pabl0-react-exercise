@@ -24,18 +24,7 @@ function TravelList() {
   const clearItems = () => setList([]); // vacía la lista -> list = []
   const resetItems = () => setList(data); // resetea la lista -> list = data
 
-  const createItem = () => {
-    alert("Create new task");
-    const task = prompt("What is the task?");
-    const desc = prompt("What is the due date?");
-
-    const item = { task, desc }; // Nuevo objeto destino
-    //list.push(item); // No se recomiendoa modificar directamente. Usar setList
-    setList([...list, item]); // Añade el nuevo destino a la lista
-  };
-
   const deleteItem = (pos) => {
-    alert("Delete task?");
     const remainingItems = list.filter((item, index) => index !== pos);
     setList(remainingItems); // modifica el estado con lo restante
   };
@@ -67,7 +56,6 @@ function TravelList() {
       <div className="actionButtons">
         <button onClick={clearItems}>Delete all</button>
         <button onClick={resetItems}>Refresh</button>
-        <button onClick={createItem}>Create a task</button>
       </div>
 
 
@@ -86,11 +74,14 @@ function TravelList() {
 
 
       {values.task || values.desc ?
-        <div className="formResults">
-          <h4>NEW TASK: </h4>
-          <p><b>Task: </b>{values.task}</p>
-          <p><b>Due Date: </b>{values.desc}</p>
+        <div className="formCard">
+          <h3>{values.task}</h3>
+          <p>Due date: {values.desc}</p>
+          <br/>
+      <button className="formButton" onClick={()=>props.delete()}>Delete</button>
         </div> : null}
+
+        <h2>To-Do List:</h2>
 
       {paintItems()}
 
