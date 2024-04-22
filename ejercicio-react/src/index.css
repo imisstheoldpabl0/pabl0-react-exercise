@@ -70,7 +70,6 @@ button:focus-visible {
 
 .actionButtons {
   display: flex;
-  gap: 28px;
   justify-content: center;
 }
 
@@ -81,12 +80,18 @@ button:focus-visible {
   align-items: center;
   margin-top: 20px;
 
-  label {
-    margin-top: 14px;
-
-  }
   input {
     margin-top: 7px;
     margin-bottom: 14px;
+  }
+}
+
+.formResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h4 {
+    margin-top: 12px;
   }
 }

@@ -17,7 +17,6 @@ function TravelList() {
         key={index}
         task={item.task}
         desc={item.desc}
-        img_url={item.img_url}
         delete={() => deleteItem(index)}
       />
     ));
@@ -36,7 +35,7 @@ function TravelList() {
   };
 
   const deleteItem = (pos) => {
-    alert("Delete task");
+    alert("Delete task?");
     const remainingItems = list.filter((item, index) => index !== pos);
     setList(remainingItems); // modifica el estado con lo restante
   };
@@ -46,9 +45,8 @@ function TravelList() {
 
     const task = e.target.task.value;
     const desc = e.target.desc.value;
-    const img_url = e.target.img_url.value;
 
-    const item = { task, desc, img_url }; // Nuevo objeto destino
+    const item = { task, desc }; // Nuevo objeto destino
     setList([item, ...list]); // Añade el nuevo destino a la lista
     console.log("*******");
     console.log(item);
@@ -88,10 +86,10 @@ function TravelList() {
 
 
       {values.task || values.desc ?
-        <div>
-          <h4>New task: </h4>
-          <p>Task: {values.task}</p>
-          <p>Due Date: {values.desc}</p>
+        <div className="formResults">
+          <h4>NEW TASK: </h4>
+          <p><b>Task: </b>{values.task}</p>
+          <p><b>Due Date: </b>{values.desc}</p>
         </div> : null}
 
       {paintItems()}
