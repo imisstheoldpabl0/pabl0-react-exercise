@@ -1,11 +1,10 @@
 import React from "react";
-import TravelList from "./TravelList";
+import FormList from "./TravelList";
 
 function MainComponent() {
   return (
     <main>
-      <h2>Este es el MainComponent</h2>
-      <TravelList/>
+      <FormList/>
     </main>
   );
 }

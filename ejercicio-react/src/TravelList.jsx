@@ -6,7 +6,7 @@ function TravelList() {
   //Estado inicial: list = data --> [{},{},{},{},{},{}]
   const [list, setList] = useState(data); // [{},{},{}] lista de items
   const [values, setValues] = useState({
-    title: "",
+    task: "",
     desc: "",
     img_url: "",
   });
@@ -15,7 +15,7 @@ function TravelList() {
     list.map((item, index) => (
       <TravelItem
         key={index}
-        title={item.title}
+        task={item.task}
         desc={item.desc}
         img_url={item.img_url}
         delete={() => deleteItem(index)}
@@ -26,21 +26,17 @@ function TravelList() {
   const resetItems = () => setList(data); // resetea la lista -> list = data
 
   const createItem = () => {
-    alert("Crear destino nuevo");
-    const title = prompt("Introduce el título del destino");
-    const desc = prompt("Introduce la descripción del destino");
-    const img_url = prompt("Introduce la url de la imagen");
+    alert("Create new task");
+    const task = prompt("What is the task?");
+    const desc = prompt("What is the due date?");
 
-    const item = { title, desc, img_url }; // Nuevo objeto destino
+    const item = { task, desc }; // Nuevo objeto destino
     //list.push(item); // No se recomiendoa modificar directamente. Usar setList
     setList([...list, item]); // Añade el nuevo destino a la lista
   };
 
   const deleteItem = (pos) => {
-    alert("Borrar destino");
-    // [TravelItem1, TravelItem2, TravelItem3, TravelItem4, TravelItem5, TravelItem6]
-    // pos = 2
-    // [TravelItem1, TravelItem2, TravelItem4, TravelItem5, TravelItem6]
+    alert("Delete task");
     const remainingItems = list.filter((item, index) => index !== pos);
     setList(remainingItems); // modifica el estado con lo restante
   };
@@ -48,11 +44,11 @@ function TravelList() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const title = e.target.title.value;
+    const task = e.target.task.value;
     const desc = e.target.desc.value;
     const img_url = e.target.img_url.value;
 
-    const item = { title, desc, img_url }; // Nuevo objeto destino
+    const item = { task, desc, img_url }; // Nuevo objeto destino
     setList([item, ...list]); // Añade el nuevo destino a la lista
     console.log("*******");
     console.log(item);
@@ -70,41 +66,32 @@ function TravelList() {
 
   return (
     <section>
-      <h2>Aquí va TravelList</h2>
-      <button onClick={clearItems}>Borrar todo</button>
-      <button onClick={resetItems}>Recargar</button>
-      <button onClick={createItem}>Crear destino</button>
+      <div className="actionButtons">
+        <button onClick={clearItems}>Delete all</button>
+        <button onClick={resetItems}>Refresh</button>
+        <button onClick={createItem}>Create a task</button>
+      </div>
 
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Título</label>
-        <br />
-        <input type="text" name="title" onChange={handleChange} />
-        <br />
+      <form onSubmit={handleSubmit} className="formTask">
+        <label htmlFor="name">Task Name</label>
+        <input type="text" name="task" onChange={handleChange} />
 
-        <label htmlFor="price">Descripción</label>
-        <br />
+        <label htmlFor="price">Due Date</label>
         <input type="text" name="desc" onChange={handleChange} />
-        <br />
 
-        <label htmlFor="url">URL imagen</label>
-        <br />
-        <input type="url" name="img_url" onChange={handleChange} />
-        <br />
-
-        {values.title && values.desc && values.img_url ?
-          <button type="submit">Crear destino</button> : null}
+        {values.task && values.desc ?
+          <button type="submit">ADD</button> : null}
       </form>
 
 
 
 
-      {values.title || values.desc || values.img_url ?
+      {values.task || values.desc ?
         <div>
-          <h4>Nuevo destino a crear</h4>
-          <p>Título:{values.title}</p>
-          <p>Descripción: {values.desc}</p>
-          <p>URL:{values.img_url}</p>
+          <h4>New task: </h4>
+          <p>Task: {values.task}</p>
+          <p>Due Date: {values.desc}</p>
         </div> : null}
 
       {paintItems()}
