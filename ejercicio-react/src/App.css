@@ -40,3 +40,28 @@
 .read-the-docs {
   color: #888;
 }
+
+.formCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-color: black;
+  background-color: rgb(207, 207, 207);
+  border-radius: 10px;
+  margin-top: 20px;
+  height: 80px;
+  width: 650px;
+
+  h3 {
+    margin: auto;
+  }
+
+  p {
+    margin: auto;
+  }
+
+  .formButton {
+    margin: auto;
+  }
+}
