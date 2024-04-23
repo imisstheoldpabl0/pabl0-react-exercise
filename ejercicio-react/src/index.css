@@ -58,46 +58,12 @@ button:focus-visible {
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
-    background-color: #ffffff;
+    background-color: #e0e0e0;
   }
   a:hover {
     color: #747bff;
   }
   button {
     background-color: #f9f9f9;
-  }
-}
-
-.actionButtons {
-  display: flex;
-  justify-content: center;
-  width: 650px;
-
-  button {
-    margin-right: 24px;
-    margin-left: 24px;
-  }
-}
-
-.formTask {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-
-  input {
-    margin-top: 7px;
-    margin-bottom: 14px;
-  }
-}
-
-.formResults {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  h4 {
-    margin-top: 12px;
   }
 }

@@ -1,6 +1,7 @@
-import React, { useState, useRef  } from "react";
+import React, { useState, useRef } from "react";
 import TravelItem from "./TravelItem";
 import data from "./data"; // Datos iniciales
+import "./TravelList.css";
 
 function TravelList() {
   //Estado inicial: list = data --> [{},{},{},{},{},{}]
@@ -8,7 +9,6 @@ function TravelList() {
   const [values, setValues] = useState({
     task: "",
     desc: "",
-    img_url: "",
   });
 
   const taskRef = useRef(null);
@@ -27,11 +27,17 @@ function TravelList() {
 
   const clearItems = () => setList([]); // vacía la lista -> list = []
   const resetItems = () => setList(data); // resetea la lista -> list = data
-  const clearSearch = () => setValues({ task: "", desc: "" });
 
-    // const clearForm = () => { task = ""; desc = ""; } // revisar esto
-  // const clearAll = () => { clearForm(); clearSearch(); };
-  //const startTimeout = () => setTimeout(clearSearch, 7000);
+  const clearSearch = () => setValues({ task: "", desc: "" });
+  const clearForm = () => { taskRef.current.value = ""; descRef.current.value = ""; } // revisar esto
+  //const clearForm = () => { taskRef = ""; descRef = ""; } // revisar esto
+  const clearAll = () => { clearForm(); clearSearch(); };
+
+  const showMessage = () => alert("Please fill in all fields");
+
+
+  const startTimeout = () => setTimeout(clearAll, 20000);
+  const messageTimeout = () => setTimeout(showMessage, 3000);
 
   const deleteItem = (pos) => {
     const remainingItems = list.filter((item, index) => index !== pos);
@@ -57,12 +63,15 @@ function TravelList() {
     console.log("*******");
     console.log(taskRef.current.value);
 
-   clearSearch();
-    
+    clearSearch();
+    messageTimeout();
+
   }
 
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
+    startTimeout();
+
     setValues({
       ...values,
       [e.target.name]: e.target.value
@@ -72,10 +81,6 @@ function TravelList() {
 
   return (
     <section>
-      <div className="actionButtons">
-        <button onClick={clearItems}>Delete all</button>
-        <button onClick={resetItems}>Refresh</button>
-      </div>
 
       <form onSubmit={handleSubmit} className="formTask">
         <label htmlFor="name">Task Name</label>
@@ -92,11 +97,15 @@ function TravelList() {
         <div className="formCard1">
           <h3>{values.task}</h3>
           <p>Due date: {values.desc}</p>
-          <br/>
-      <button className="formButton">Delete</button>
+          <br />
         </div> : null}
 
-        <h2>To-Do List:</h2>
+      <h2>To-Do List:</h2>
+
+      <div className="actionButtons">
+        <button onClick={clearItems}>Delete all</button>
+        <button onClick={resetItems}>Refresh</button>
+      </div>
 
       {paintItems()}
 

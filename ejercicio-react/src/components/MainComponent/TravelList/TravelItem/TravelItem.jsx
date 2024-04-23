@@ -1,5 +1,6 @@
 // rfce
 import React from "react";
+import "./TravelItem.css";
 
 function TravelItem(props) {
   return (

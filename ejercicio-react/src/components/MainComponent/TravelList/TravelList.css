@@ -1,0 +1,62 @@
+.formCard1 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    height: 80px;
+    width: 650px;
+
+    border-radius: 22px;
+
+    background: #e0e0e0;
+    /* box-shadow: 4px 4px 9px #b5b5b5, */
+    box-shadow: 4px 4px 9px #a8a8a8,
+        -4px -4px 9px #ffffff;
+
+    h3 {
+        margin: auto;
+    }
+
+    p {
+        margin: auto;
+    }
+
+    .formButton {
+        margin: auto;
+    }
+}
+
+.actionButtons {
+    display: flex;
+    justify-content: center;
+    width: 650px;
+
+    button {
+        margin-right: 24px;
+        margin-left: 24px;
+    }
+}
+
+.formTask {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+    input {
+        margin-top: 7px;
+        margin-bottom: 14px;
+    }
+}
+
+.formResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h4 {
+        margin-top: 12px;
+    }
+}
