@@ -1,6 +1,6 @@
 import React, { useState, useRef  } from "react";
 import TravelItem from "./TravelItem";
-import data from "./components/MainComponent/TravelList/data"; // Datos iniciales
+import data from "./data"; // Datos iniciales
 
 function TravelList() {
   //Estado inicial: list = data --> [{},{},{},{},{},{}]

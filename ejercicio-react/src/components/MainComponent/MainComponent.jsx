@@ -1,5 +1,5 @@
 import React from "react";
-import TravelList from "./MainComponent/TravelList/";
+import TravelList from "./TravelList";
 
 function MainComponent() {
   return (
