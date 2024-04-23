@@ -4,6 +4,7 @@ nav {
     height: auto;
     border-bottom: 1px solid #eaeaea;
     flex-direction: column;
+    width: 650px;
 
     ul {
         display: flex;

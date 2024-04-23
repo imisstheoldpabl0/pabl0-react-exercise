@@ -13,6 +13,7 @@ function TravelList() {
 
   const taskRef = useRef(null);
   const descRef = useRef(null);
+  const messageRef = useRef(null);
 
   const paintItems = () =>
     list.map((item, index) => (
@@ -33,11 +34,12 @@ function TravelList() {
   //const clearForm = () => { taskRef = ""; descRef = ""; } // revisar esto
   const clearAll = () => { clearForm(); clearSearch(); };
 
-  const showMessage = () => alert("Please fill in all fields");
+  const hideMessage = () => {messageRef.current.innerHTML = "";};
 
+  
 
   const startTimeout = () => setTimeout(clearAll, 20000);
-  const messageTimeout = () => setTimeout(showMessage, 3000);
+  const messageTimeout = () => setTimeout(hideMessage, 5000);
 
   const deleteItem = (pos) => {
     const remainingItems = list.filter((item, index) => index !== pos);
@@ -64,6 +66,7 @@ function TravelList() {
     console.log(taskRef.current.value);
 
     clearSearch();
+    messageRef.current.innerHTML = "Task added successfully!";
     messageTimeout();
 
   }
@@ -71,6 +74,7 @@ function TravelList() {
   const handleChange = (e) => {
     console.log(e.target.name, e.target.value);
     startTimeout();
+
 
     setValues({
       ...values,
@@ -81,6 +85,10 @@ function TravelList() {
 
   return (
     <section>
+
+      <div>
+        <p ref={messageRef}></p>
+      </div>
 
       <form onSubmit={handleSubmit} className="formTask">
         <label htmlFor="name">Task Name</label>
