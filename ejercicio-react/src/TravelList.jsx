@@ -29,6 +29,10 @@ function TravelList() {
   const resetItems = () => setList(data); // resetea la lista -> list = data
   const clearSearch = () => setValues({ task: "", desc: "" });
 
+    // const clearForm = () => { task = ""; desc = ""; } // revisar esto
+  // const clearAll = () => { clearForm(); clearSearch(); };
+  //const startTimeout = () => setTimeout(clearSearch, 7000);
+
   const deleteItem = (pos) => {
     const remainingItems = list.filter((item, index) => index !== pos);
     setList(remainingItems); // modifica el estado con lo restante
