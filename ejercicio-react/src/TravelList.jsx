@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef  } from "react";
 import TravelItem from "./TravelItem";
 import data from "./data"; // Datos iniciales
 
@@ -10,6 +10,9 @@ function TravelList() {
     desc: "",
     img_url: "",
   });
+
+  const taskRef = useRef(null);
+  const descRef = useRef(null);
 
   const paintItems = () =>
     list.map((item, index) => (
@@ -43,8 +46,13 @@ function TravelList() {
     console.log(item);
     console.log(list);
 
-    e.target.task.value = "";
-    e.target.desc.value = "";
+    // Probando ref
+    console.log(taskRef.current.value);
+    taskRef.current.value = "";
+    descRef.current.value = "";
+    console.log("*******");
+    console.log(taskRef.current.value);
+
    clearSearch();
     
   }
@@ -67,10 +75,10 @@ function TravelList() {
 
       <form onSubmit={handleSubmit} className="formTask">
         <label htmlFor="name">Task Name</label>
-        <input type="text" name="task" onChange={handleChange} />
+        <input type="text" name="task" ref={taskRef} onChange={handleChange} />
 
         <label htmlFor="price">Due Date</label>
-        <input type="text" name="desc" onChange={handleChange} />
+        <input type="text" name="desc" ref={descRef} onChange={handleChange} />
 
         {values.task && values.desc ?
           <button type="submit">ADD</button> : null}
