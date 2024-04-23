@@ -36,10 +36,17 @@ function TravelList() {
 
   const hideMessage = () => {messageRef.current.innerHTML = "";};
 
-  
-
   const startTimeout = () => setTimeout(clearAll, 20000);
   const messageTimeout = () => setTimeout(hideMessage, 5000);
+
+  const checkLength = () => {
+    if (taskRef.current.value.length < 6) {
+      messageRef.current.innerHTML = "Task name must be at least 6 characters long!";
+      return false;
+    } else {
+      messageRef.current.innerHTML = "";
+      return true;
+    }};
 
   const deleteItem = (pos) => {
     const remainingItems = list.filter((item, index) => index !== pos);
@@ -51,6 +58,8 @@ function TravelList() {
 
     const task = e.target.task.value;
     const desc = e.target.desc.value;
+
+    if (checkLength()) {
 
     const item = { task, desc }; // Nuevo objeto destino
     setList([item, ...list]); // Añade el nuevo destino a la lista
@@ -68,6 +77,7 @@ function TravelList() {
     clearSearch();
     messageRef.current.innerHTML = "Task added successfully!";
     messageTimeout();
+    }
 
   }
 
